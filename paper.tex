@@ -1,0 +1,61 @@
+\documentclass{article}
+
+\title{Kinetic and Kinematic Measurements from an Instrumented Bicycle during
+  different maneuevers on and off the treadmill}
+
+\begin{document}
+
+\section{Introduction}
+
+We developed an instrumented bicycle with a rigidified rider which is capable
+of accurately measuring a variety of kinematic and kinetic time varying data.
+We then performed a large number of experiments (maneuvers) with several
+different riders on a treadmill and on indoor level flat ground. The impetus
+for most of the expriements was to collect data that was ideal for system and
+parameter identification purposes of the bicycle/rider system. The majority of
+the data are trials in which the bicycle/rider system was laterally perturbed
+by externally applied pulses while the rider attempted to keep either the
+bicycle's heading or the bicycle's front wheel tracking a line.
+
+There are few instances of similar data collected for the bicycle/rider system
+over history. In the early 70's, a comprehensive study on bicycle dynamics and
+control was implemented at CALSPAN where kinematic data was collected from
+riderless and ridden bicycles. This data was collected on stripcharts and video
+tape. Almost simulateneouly, van Lunteren and Stassen developed a bicycle
+simulator and collected digital kinematic data of rider's controlling the
+simulator. In the 80's Dolye developed an instrumented bicycle that could
+measure kinematics digitally. He performed blindfolded slow riding. More
+recently, Kooijman developed an instrumented riderless bicycle with kinematic
+sensors performing straight running expriements on and off the treadmill while
+being perturbed by an unmeasured perturbation. Moore et. al collected kinematic
+data of a bicycle. Besides Moore2012 none of these datasets are publically
+available.
+
+% TODO : Should I cite all data collected on bicycles?: de Lorenzo, Cheng,
+% Cain, etc? Or just ones intended for system id purposes?
+
+Here we present the first publically available and organized dataset of a rider
+controlling a bicycle with the most important measurements needed for system or
+parameter identification in addition to the methods and equipment desing and
+basic software to process the data. We give both the ``raw data'' and a set of
+processed data.
+
+\section{Raw Data}
+
+\subsection{Trial Data}
+
+The software, BicycleDAQ, outputs a single Matlab \verb|.mat| file for each
+trial. The \verb|.mat| file contains an array of time series with the raw
+voltage readings from the sensors connected to the NI USB-6218, an array of
+time series of the rate gyro, accelerometer, and magnetormeter readings in
+their corresponding SI units from the VN-100 IMU, and it contains meta data
+collected from the GUI.
+
+\subsection{Calibration Data}
+
+BicycleDAQ also includes a tool for calibrating various sensors attached to the
+instrumented bicycle. This tool outputs a single Matlab \verb|.mat| file for
+each sensor calibration. The calibrations were performed before each day of
+experimentation.
+
+\end{document}

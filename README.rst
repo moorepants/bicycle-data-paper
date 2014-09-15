@@ -1,3 +1,8 @@
+Journal
+=======
+
+I'm planning to submit this as a "Data Note" to F1000Research.
+
 Authors
 =======
 
@@ -73,3 +78,4 @@ Data Availability
 
 - Raw mat files (runs and calibrations)
 - HDF5 file with raw and some processed data
+- A csv file with meta data in it?
