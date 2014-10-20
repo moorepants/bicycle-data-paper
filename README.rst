@@ -49,7 +49,7 @@ Equipment: Instrumented Bicycle
   - NI box
   - Laptop
   - Strain gauge amp
-  - Matlab software
+  - Matlab software, BicycleDAQ
 
 - Time sync
 
@@ -64,6 +64,9 @@ Experiments
 Data description
 ================
 
+Report some stats about the data, i.e. how many runs, how many of each type,
+how many valid (not corrupt), etc.
+
 Meta Data
 ---------
 
@@ -75,12 +78,20 @@ Raw Data
 Explain the raw measurements that came out of the onboard software. Make a
 table.
 
+Make a plot of the raw data. Maybe for one treadmill and one pavillion trial
+group like measurements into subplots.
+
 Processed Data
 --------------
 
 - Explain all the processed values.
 - How to compute all the interesting variables
-- Software description
+- Software description, BicycleDataProcessor
+
+Make a plot of the processed data. Maybe for one treadmill and one pavillion
+trial group like measurements into subplots. Similar to:
+
+http://moorepants.github.io/dissertation/_images/time-history-treadmill.png
 
 Data Availability
 =================
