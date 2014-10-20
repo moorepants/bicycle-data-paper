@@ -1,5 +1,7 @@
 \documentclass{article}
 
+\usepackage{todo}
+
 \title{Kinetic and Kinematic Measurements from an Instrumented Bicycle during
   different maneuevers on and off the treadmill}
 
@@ -11,7 +13,7 @@ We developed an instrumented bicycle with a rigidified rider which is capable
 of accurately measuring a variety of kinematic and kinetic time varying data.
 We then performed a large number of experiments (maneuvers) with several
 different riders on a treadmill and on indoor level flat ground. The impetus
-for most of the expriements was to collect data that was ideal for system and
+for most of the experiments was to collect data that was ideal for system and
 parameter identification purposes of the bicycle/rider system. The majority of
 the data are trials in which the bicycle/rider system was laterally perturbed
 by externally applied pulses while the rider attempted to keep either the
@@ -21,24 +23,207 @@ There are few instances of similar data collected for the bicycle/rider system
 over history. In the early 70's, a comprehensive study on bicycle dynamics and
 control was implemented at CALSPAN where kinematic data was collected from
 riderless and ridden bicycles. This data was collected on stripcharts and video
-tape. Almost simulateneouly, van Lunteren and Stassen developed a bicycle
+tape. Almost simultaneously, van Lunteren and Stassen developed a bicycle
 simulator and collected digital kinematic data of rider's controlling the
 simulator. In the 80's Dolye developed an instrumented bicycle that could
 measure kinematics digitally. He performed blindfolded slow riding. More
 recently, Kooijman developed an instrumented riderless bicycle with kinematic
-sensors performing straight running expriements on and off the treadmill while
+sensors performing straight running experiments on and off the treadmill while
 being perturbed by an unmeasured perturbation. Moore et. al collected kinematic
-data of a bicycle. Besides Moore2012 none of these datasets are publically
+data of a bicycle. Besides Moore2012 none of these datasets are publicly
 available.
 
 % TODO : Should I cite all data collected on bicycles?: de Lorenzo, Cheng,
 % Cain, etc? Or just ones intended for system id purposes?
 
-Here we present the first publically available and organized dataset of a rider
+Here we present the first publicly available and organized dataset of a rider
 controlling a bicycle with the most important measurements needed for system or
-parameter identification in addition to the methods and equipment desing and
+parameter identification in addition to the methods and equipment design and
 basic software to process the data. We give both the ``raw data'' and a set of
 processed data.
+
+\section{Methods}
+
+\subsection{Instrumentation}
+
+We developed a powered instrumented bicycle to collect the desired data. The
+instrumented bicycle includes sensors for measuring both kinematic and kinetic
+data and utilized a harness to limit and minimize the rider's motion relative
+to the rear frame of the bicycle.
+
+The bicycle had an adjustable torso harness which fixed the rider's torso to
+the rear frame of the bicycle. In addition, the rider's feet were place on foot
+pegs and their knee's were affixed to the rear frame via strong magnets. Thus
+the only significant biomechanical motion is the rider's arm motion for
+steering and motion of the head.
+
+The body fixed angular rate and a body fixed point acceleration of the rear
+frame were measured with a VN-100 (VectorNav, Austin, TX, USA) inertial
+measurement unit. The VN-100 was mounted to the rear frame with its factory X
+axis aligned with $\hat{c}_1$, Y axis aligned with the $-\hat{c}_3$, and Z axis
+aligned with $\hat{c}_2$ as described in Moore2012. I made use of the VN-100's
+ability to output it's measurements with respect to a different reference frame
+than the factory frame and aligned the X, Y and Z axes with the $\hat{c}_1$,
+$\hat{c}_2$ and $\hat{c}_3$ axes, respectively.  This pre-output rotation
+matrix was recorded in the meta data for each run. The steer rate gyro was
+attached such that its axis was aligned with $\hat{e}_3$.
+
+\todo{Need to have the location of the VN-100 point}
+
+The roll angle of the rear frame relative to level ground was measured with a
+custom built lightweight trailer in which a potentiometer output voltage
+proportional to the roll angle.
+
+The body fixed angular rate about the steer axis of the bicycle front frame was
+measured with a single rate gyro. The relative steer angle between the front
+and rear frames was measured with a potentiometer.
+
+The relative rate of the rear wheel with respect to the rear frame was measured
+with a electric generator which produced a voltage proportional to the rate.
+
+Most trials included a lateral perturbation force. This force was applied just
+below the seat via a rod (or rope) that was held normal to the rear frame
+plane. The load was measured with a linear 100 lb load cell (SSM-100,
+Interface).
+
+A 150 in-lb torque sensor (TFF350, Futek) was mounted inline with the steer
+axis inbetween the top of the fork steer tube and the handlebar stem. It was
+mounted between two sets of headset bearings and isolated from loads other than
+pure axial torques via a zero backlash telescoping double universal joint.
+
+The potentiometers, generator, and linear load cell required manual
+calibrations, ideal before each set of trials. The manufacturers of the
+remaining sensors included scaling factors.
+
+The VN-100 signals were recorded independently from the other sensors which
+were collected through an analog data acquisition unit (USB-6218, National
+Instruments). Thus there are variable time delays between the sets of signals.
+To find the time delay we attached an additional three axis accelerometer to
+the VN-100 and sampled it through the USB-6218. At the initiation of each trial
+the bicyclist has to traverse a bump which give a unique vertical acceleration
+pattern. The time delay can be found by computing the autocorrelation of two
+signals and applied to the other signals appropriately.
+
+The data was collected from the VN-100 development board and the NI USB-6218
+via a netbook laptop (Eee PC 1001P-MU17-WT, ASUSTek Computer Inc., Tapei,
+Taiwan) with a Matlab application, BicycleDAQ.
+
+\subsection{Experiments}
+
+Our main experimental design was focused around a reasonable way to excite the
+rider/bicycle system to create data rich enough to be used in system and
+parameter identification techniques.
+
+We performed the experiments in two different environments: on a treadmill and
+in a large indoor gymnasium. The horse treadmill (Graber Ag Kagra Mustang 2200)
+is 1 meter wider and 5 meters long and has a speed range from 0.5 m/s to 17
+m/s. The gymnasium floor was made of a stiff rubber and provided a rectangular,
+wind-free space of about 100' by 180' (30 m by 55 m). We rode around the
+perimeter to build up speed and did our maneuvers on a straight section about
+100 feet (30 m) long. We were not able to travel at speeds higher than about 7
+m/s.
+
+The following list details the meaning of the maneuver labels in the dataset.
+
+\begin{description}
+  \item[System Test]
+     This is a generic label for data collected during various system tests
+     that should not be used for general analysis. This was primarily used to
+     check that all sensors were working before each set of experiments.
+  \item[Balance] The rider was instructed to simply balance the bicycle and keep
+    a relatively constant heading. They were instructed to focus on a point of
+    their choosing in the far distance. There was an open door in front of the
+    treadmill which allowed the rider to look to a point outside across the
+    street. In the pavilion, the rider looked into the rafters of the building
+    or at the furthest wall. We had a line taped to the pavilion floor during
+    these runs that was still in the periphery of the rider's vision.
+  \item[Balance With Disturbance] Same as 'Balance' except that a lateral force
+    perturbation is applied. The rider wore a face shield on the side of the
+    perturber so no visual cues were available to predict the perturbation time
+    or direction. On the treadmill, we sample for 60 to 90 seconds with five to
+    eleven perturbations per run. On the pavilion floor we were able to apply
+    only two to four perturbations per run due to the length of the track. In
+    the early runs (< 204), the lateral force was applied only in the negative
+    direction (to the left) and the perturber decided when to apply the
+    perturbations. For the later runs (> 203), we applied a random sequence of
+    positive and negative perturbations that was unknown to the rider. On the
+    treadmill, the rider signaled when they felt stable and the perturbation
+    was applied at a random time between 0 and 1 second based on a simple
+    computer program. On the pavilion floor, we simply applied the
+    perturbations randomly but as soon as the rider felt stable so that we
+    could get in as many as possible during each run.
+  \item[Track Straight Line] The rider was instructed to focus on a straight
+    line that was marked on the ground and he attempted to keep the front wheel
+    on the line. The line of sight from the rider's eyes to the line on the
+    ground was essentially tangent the top of the front wheel. In the pavilion,
+    the line could be seen up to 100 feet ahead, so there was greater
+    peripheral view of the line. On the treadmill, there was from 0.5 to 1.5
+    meters of preview line available.
+  \item[Track Straight Line With Disturbance] Same as "Track Straight Line"
+    except that a lateral perturbation force. This was done in the same fashion
+    as described in "Balance With Disturbance".
+  \item[Lane Change] The rider attempted to track a line in similar fashion as
+    the "Track Straight Line" maneuver except that the line was a single lane
+    change. On the pavilion floor, the line was taped on the ground and the
+    rider was instructed to do whatever felt best to stay on the line Figure X.
+    They could use full preview looking ahead, focus on the front wheel and
+    line, or a combination of both.  We also tried some lane changes on the
+    treadmill but the lack of preview of the line made it especially difficult.
+    We were able to manage it by marking a count down on the belt so that the
+    rider new when the lane change would arrive. The rider also knew the
+    direction of lane change beforehand for all the scenarios.
+  \item[Blind With Disturbance] We did a run or two for each rider on the
+    pavilion floor with the rider's eyes closed to attempt to completely open
+    the heading loop. In hindsight, blind tests would be preferable when
+    identifying the rider control system so that only inner roll stabilization
+    loop need be analyzed.
+  \item[Static Calibration] We took a short duration sample of the sensors'
+    signals while no rider was on the bicycle and the bicycle was fixed as
+    close as possible to vertical in roll before each set of runs. The static
+    accelerometer readings could theoretically give the roll and pitch angles
+    of the bicycle frame and be used to account for the bias in the roll angle
+    measurements.
+\end{description}
+
+\todo{Add the lane change diagram}
+
+The primary set of experimental data was collected on seven different days. The
+first few days were mostly trials to test the equipment, procedures and
+different maneuvers. The data from the following days is suitable for analysis.
+
+\begin{description}
+  \item[February 4 2011 Runs 103-109] These were the first trials on the
+    treadmill for preliminary testing. Jason was the only rider. We performed
+    lateral deviation tracking with disturbances. The bike fell over, broke and
+    we had to cut it short.
+  \item[February 28, 2011 Run 115-170] These were the first trials in the
+    pavilion. Jason was the only rider. We tried lane changes (115-139),
+    lateral deviation tracking with disturbances (140-157), and a mixture of
+    heading tracking and lateral deviation tracking with no disturbances
+    (158-170). I noted that the slip clutch backlash seemed to be larger than
+    the previous day with a guess of about 1 degree.
+  \item[March 9, 2011 Runs 180-204] This was the second go at the treadmill,
+    still just testing things. Jason was the only rider. We did heading and
+    lateral deviation tracking with disturbances and some lane changes. The
+    lane changes were 0.25 m wide left and right maneuvers back and forth among
+    two lines on the treadmill at 2 m long segments. Countdown markers to give
+    an idea when the lane change started were necessary due to the rider's
+    limited preview distance. We did the highest speed during any subsequent
+    trials at 9 m/s. The 9 m/s runs generated a large amount of noise in the
+    lateral force channel. The treadmill elevation was set at 0.1\% upwards
+    incline (because it was stuck).
+  \item[August 30, 2011 Runs 235-291] Jason and Luke rode and performed heading
+    and lateral deviation tasks with and without perturbations at three speeds
+    on the treadmill.
+  \item[September 6, 2011 Runs 295-318] Charlie performed heading and lateral
+    deviation tasks with and without perturbations on the treadmill.
+  \item[September 9, 2011 Runs 325-536] Luke, Charlie and Jason performed
+    heading and lateral deviation tracking tasks on the Pavilion floor with and
+    without perturbations. Most of Luke and Charlie's runs were corrupt due to
+    the time synchronization issues.
+  \item[September 21, 2011 Runs 538-706] Luke and Charlie repeated the runs
+    from September 9th. And we added a couple of blind runs for each of them.
+\end{description}
 
 \section{Raw Data}
 
@@ -47,7 +232,7 @@ processed data.
 The software, BicycleDAQ, outputs a single Matlab \verb|.mat| file for each
 trial. The \verb|.mat| file contains an array of time series with the raw
 voltage readings from the sensors connected to the NI USB-6218, an array of
-time series of the rate gyro, accelerometer, and magnetormeter readings in
+time series of the rate gyro, accelerometer, and magnetometer readings in
 their corresponding SI units from the VN-100 IMU, and it contains meta data
 collected from the GUI.
 
