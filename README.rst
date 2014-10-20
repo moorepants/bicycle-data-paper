@@ -1,3 +1,12 @@
+Build Instructions
+==================
+
+Make sure you have a LaTeX suite installed and simply type ``make`` at the
+command line or checkout the ShareLaTeX CI build.
+
+.. image:: https://www.sharelatex.com/github/repos/moorepants/bicycle-data-paper/builds/latest/badge.svg
+   :target: https://www.sharelatex.com/github/repos/moorepants/bicycle-data-paper/builds/latest/output.pdf
+
 Journal
 =======
 
